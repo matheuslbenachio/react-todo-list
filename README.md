@@ -10,6 +10,7 @@ serve -s build
 You can also run the project in dev mode by typing 
 ```node
 npm install
+npm install react-scripts@1.1.5 -g
 npm start
 ```
 in the terminal. The react-scripts version used was 1.1.5.
