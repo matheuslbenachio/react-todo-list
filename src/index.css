@@ -1,0 +1,276 @@
+/* Removes the blue outline of everything on focus: */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+/* General styles */
+body {
+  overflow-x: hidden;
+}
+html, body {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Placeholder of the input styles */
+::placeholder {
+  color: rgba(0, 0, 0, .5);
+  opacity: 1;
+}
+:-ms-input-placeholder {
+ color: rgba(0, 0, 0, .5);
+}
+::-ms-input-placeholder {
+ color: rgba(0, 0, 0, .5);
+}
+/* IE, clears the X */
+::-ms-clear {
+  display: none;
+}
+
+@keyframes fadein {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+/* Main container of the application */
+.app-container {
+  max-width: 400px;
+  padding: 20px 0px 0px 0px;
+  height: calc(100vh - 20px);
+  width: 100%;
+  margin: 0 auto;
+  animation: fadein .5s;
+}
+
+/* Fixed blue gradient background */
+.background-gradient {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+  background-image: linear-gradient(rgb(255, 255, 255), rgb(201, 238, 255));
+}
+
+/* Footer container */
+.footer-container {
+  width: 100%;
+  width: calc(100% - 32px);
+  padding: 10px 15px;
+  background: white;
+  color: rgb(150, 150, 150);
+  border: 1px solid rgba(0, 0, 0, .2);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, .1);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+/* The buttons of the footer (active, all, completed) */
+.footer-container .footer-buttons {
+  margin-top: 5px;
+  display: inline-block;
+  margin-right: 5px;
+  cursor: pointer;
+  padding: 0px 5px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 3px;
+}
+/* The left part of the footer, made this so we can
+ stretch it without worrying */
+.footer-container .info {
+  flex: 1;
+}
+/* The selected filter atm: */
+.footer-container .filters .active {
+  color: white;
+  background: rgb(44, 144, 223);
+}
+
+/* General input container for our app: */
+.input-container {
+  position: relative;
+  z-index: 2 !important;
+}
+/* Any input in the app: */
+input {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 0 !important;
+  background: transparent;
+}
+/* The main todo input, the input that is located at the top
+  of the app and adds stuff to the list: */
+.todo-input {
+  width: 100%;
+  width: calc(100% - 77px);
+  height: 50px;
+  margin-bottom: -1px;
+  padding: 0px 15px 0px 60px;
+  background: white;
+  color: rgb(100, 100, 100);
+  border: 1px solid rgba(0, 0, 0, .2);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, .1);
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+/* The todo input's container. */
+.todo-input-container {
+  position: relative;
+}
+/* The 'toggle all' checkbox of the todo's input */
+.todo-input-container .checkbox {
+  position: absolute;
+  z-index: 10;
+  top: 10px;
+  left: 1px;
+}
+/* The 'delete all' icon of the todo's input */
+.todo-input-container .delete {
+  background: white;
+  position: absolute;
+  z-index: 10;
+  top: 10px;
+  right: 2px;
+}
+
+/* The blue container of the list */
+.todo-list-container {
+  border: 1px solid rgba(24, 132, 204, 0.424);
+  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, .05);
+}
+/* The empty message of the list: */
+.todo-list-container .empty-message {
+  text-align: center;
+  color: rgba(0, 0, 0, .3);
+  height: 42px;
+  background: white;
+  line-height: 42px;
+}
+
+
+/* The input of each item: */
+.todo-item-input {
+  width: calc(100%);
+  font-size: 17px;
+}
+
+/* Each item in the todo-list: */
+@keyframes todo-item-container-animation {
+  from { background: rgba(0, 0, 0, .1); }
+  to { background: white; }
+}
+/* The container for each item: */
+.todo-item-container {
+  display: flex;
+  align-items: center;
+  background: white;
+  animation: todo-item-container-animation .4s; /* Spawn animation */
+}
+/* Input container of an item: */
+.todo-item-container .input-container {
+  display: flex;
+  flex: 1;
+}
+/* Input container of an item: */
+.todo-item-container input {
+  padding: 10px;
+  border: 1px solid transparent;
+}
+
+/* The input for each item: */
+.todo-item-container input:hover {
+  border: 1px solid rgb(230, 230, 230);
+}
+.todo-item-container input:focus {
+  border: 1px solid rgb(190, 190, 190);
+}
+
+/* The action balls: */
+.ball {
+  border-radius: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: rgba(0, 0, 0, .5);
+  width: 30px;
+  height: 30px;
+  transition: all .2s; 
+}
+/* The action balls: */
+.ball:hover {
+  color: white;
+}
+
+/* Black hint of the ball, showing on hover */
+.ball-hint {
+  position: absolute;
+  pointer-events: none;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 13px;
+  width: 100px;
+  top: 35px;
+  background: transparent;
+  color: transparent;
+  text-align: center;
+  transition: all .25s;
+  
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+.ball:hover .ball-hint {
+  background: rgba(0, 0, 0, 0.723);
+  color: white;
+}
+
+/* Checkbox icon */
+.checkbox {
+  color: rgba(0, 0, 0, .15);
+}
+.checkbox:hover {
+  background: rgb(192, 235, 192);
+  color: rgba(0, 0, 0, .5);
+}
+/* Delete icon: */
+.delete:hover {
+  background: rgb(241, 69, 54);
+}
+
+/* When an item is checked: */
+.todo-item-container .active {
+  background: rgb(92, 158, 92) !important;
+  color: white;
+}
+/* When an item is hovered: */
+.todo-item-container .active:hover {
+  background: rgb(70, 117, 70) !important;
+  color: white;
+}
+
+/* The title stuff: */
+.title-container {
+  text-align: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+.title-container * {
+  margin: 0px;
+  padding: 0px;
+}
+.title-container h3 {
+  font-size: 13px;
+}
